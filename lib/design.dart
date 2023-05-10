@@ -15,160 +15,168 @@ class _EnergizeAppState extends State<EnergizeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[100],
         appBar: AppBar(
-          title: Text('Solar Energy Designer'),
+          title: Text('Solar Energy System Designer'),
           centerTitle: true,
           elevation: 0.0,
-
+          backgroundColor: Colors.blueAccent,
         ),
         body: Padding(
             padding: EdgeInsets.all(20.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Select your Solar Installation design',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Choose your design type:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      GFCard(
-                        boxFit: BoxFit.scaleDown,
-                        imageOverlay: AssetImage('assets/grid.png'),
-                        //image: Image.asset('assets/grid.png'),
-                        //showImage: true,
-                        titlePosition: GFPosition.start,
-                        showOverlayImage: true,
-                        color: Colors.blueAccent,
-                        title: GFListTile(
-                          avatar: GFAvatar(
-                            //backgroundImage: AssetImage('assets/grid.png'),
-                            //radius: 60.0,
-                            size: 8.0,
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
                           ),
-                          title: Text(
-                            'On Grid Solar Design',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.0,
-                                color: Colors.white
+                          color: Colors.blueAccent,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ListTile(
+                                  title: Text("On grid Solar System",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                      "- Design a Solar PV system that can be "
+                                          "connected to the grid",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16
+                                    ),
+                                  ),
+                                ),
+                                Image.asset('assets/grid.png',
+                                  fit: BoxFit.cover,
+                                ),
+                                 ElevatedButton(
+                                    onPressed: null,
+                                      child: Text("Get Started",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red)
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
-                          //subTitle: Text('Design a Solar PV system that can be connected to the grid'),
+                        )
+                      ]
+                    ),
+                    Column(
+                      children: [
+                        GFCard(
+                          boxFit: BoxFit.scaleDown,
+                          imageOverlay: AssetImage('assets/off-grid.png'),
+                          //image: Image.asset('assets/grid.png'),
+                          //showImage: true,
+                          titlePosition: GFPosition.start,
+                          showOverlayImage: true,
+                          color: Colors.blueAccent,
+                          title: GFListTile(
+                            avatar: GFAvatar(
+                              //backgroundImage: AssetImage('assets/grid.png'),
+                              //radius: 60.0,
+                              size: 8.0,
+                            ),
+                            title: Text(
+                              'Off Grid Solar Design',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0,
+                                  color: Colors.white
+                              ),
+                            ),
+                            //subTitle: Text('Design a Solar PV system that can be connected to the grid'),
+                          ),
+                          //content: Text('GF Cards has three types of cards bla bla blah'),
+                          buttonBar: GFButtonBar(
+                              alignment: WrapAlignment.center,
+                              children: [
+                                GFButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const SecondRoute())
+                                      );
+                                    },
+                                    text: 'Get Started',
+                                    textStyle: TextStyle(
+                                    )
+                                ),
+                              ]
+                          ),
                         ),
-                        //content: Text('GF Cards has three types of cards bla bla blah'),
-                        buttonBar: GFButtonBar(
+                      ],
+                    ),
+                    GFCard(
+                      boxFit: BoxFit.scaleDown,
+                      imageOverlay: AssetImage('assets/hybrid.png'),
+                      //image: Image.asset('assets/grid.png'),
+                      //showImage: true,
+                      titlePosition: GFPosition.start,
+                      showOverlayImage: true,
+                      color: Colors.blueAccent,
+                      title: GFListTile(
+                        avatar: GFAvatar(
+                          //backgroundImage: AssetImage('assets/grid.png'),
+                          //radius: 60.0,
+                          size: 8.0,
+                        ),
+                        title: Text(
+                          'Hybrid Solar Design',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                              color: Colors.white
+                          ),
+                        ),
+                        //subTitle: Text('Design a Solar PV system that can be connected to the grid'),
+                      ),
+                      //content: Text('GF Cards has three types of cards bla bla blah'),
+                      buttonBar: GFButtonBar(
                           alignment: WrapAlignment.center,
                           children: [
                             GFButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute())
-                                );
-                              },
-                              text: 'Get Started',
-                              textStyle: TextStyle(
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      GFCard(
-                        boxFit: BoxFit.scaleDown,
-                        imageOverlay: AssetImage('assets/off-grid.png'),
-                        //image: Image.asset('assets/grid.png'),
-                        //showImage: true,
-                        titlePosition: GFPosition.start,
-                        showOverlayImage: true,
-                        color: Colors.blueAccent,
-                        title: GFListTile(
-                          avatar: GFAvatar(
-                            //backgroundImage: AssetImage('assets/grid.png'),
-                            //radius: 60.0,
-                            size: 8.0,
-                          ),
-                          title: Text(
-                            'Off Grid Solar Design',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.0,
-                                color: Colors.white
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const SecondRoute())
+                                  );
+                                },
+                                text: 'Get Started',
+                                textStyle: TextStyle(
+                                )
                             ),
-                          ),
-                          //subTitle: Text('Design a Solar PV system that can be connected to the grid'),
-                        ),
-                        //content: Text('GF Cards has three types of cards bla bla blah'),
-                        buttonBar: GFButtonBar(
-                            alignment: WrapAlignment.center,
-                            children: [
-                              GFButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => const SecondRoute())
-                                    );
-                                  },
-                                  text: 'Get Started',
-                                  textStyle: TextStyle(
-                                  )
-                              ),
-                            ]
-                        ),
+                          ]
                       ),
-                    ],
-                  ),
-                  GFCard(
-                    boxFit: BoxFit.scaleDown,
-                    imageOverlay: AssetImage('assets/hybrid.png'),
-                    //image: Image.asset('assets/grid.png'),
-                    //showImage: true,
-                    titlePosition: GFPosition.start,
-                    showOverlayImage: true,
-                    color: Colors.blueAccent,
-                    title: GFListTile(
-                      avatar: GFAvatar(
-                        //backgroundImage: AssetImage('assets/grid.png'),
-                        //radius: 60.0,
-                        size: 8.0,
-                      ),
-                      title: Text(
-                        'Hybrid Solar Design',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
-                            color: Colors.white
-                        ),
-                      ),
-                      //subTitle: Text('Design a Solar PV system that can be connected to the grid'),
                     ),
-                    //content: Text('GF Cards has three types of cards bla bla blah'),
-                    buttonBar: GFButtonBar(
-                        alignment: WrapAlignment.center,
-                        children: [
-                          GFButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const SecondRoute())
-                                );
-                              },
-                              text: 'Get Started',
-                              textStyle: TextStyle(
-                              )
-                          ),
-                        ]
-                    ),
-                  ),
-                ]
+                  ]
+              ),
             )
         )
     );
