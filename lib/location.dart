@@ -8,40 +8,12 @@ class LocationRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'What is your location?',
-          style: TextStyle(),
-        ),
-        //shape: ,
+          'What is your location?'
+        )
       ),
-      body: Center(
-        child:
-        Location(
-          /*ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back'),*/
-        ),
-      ),
-    );
-  }
-}
-
-
-// 2nd Route: Location
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  //static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      //title: _title,
-      home: Scaffold(
-        //appBar: AppBar(title: const Text(_title)),
-        body: const Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
           child: Location(),
         ),
       ),
@@ -62,7 +34,6 @@ class _LocationState extends State<Location> {
   //Initial Selected Value
   String dropdownvalue = 'Abuja';
 
-
   // List of items in our dropdown menu
   var items = [
     'Abuja',
@@ -70,7 +41,6 @@ class _LocationState extends State<Location> {
     'Lagos',
     'Abia',
   ];
-
 
 
   @override
@@ -81,13 +51,10 @@ class _LocationState extends State<Location> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             DropdownButton(
-
               // Initial Value
               value: dropdownvalue,
-
               icon: Icon(Icons.keyboard_arrow_down),
               hint: Text('Select Your Location'),
-
               // Array list of items
               items: items.map((String items) {
                 return DropdownMenuItem(
@@ -114,5 +81,4 @@ class _LocationState extends State<Location> {
 
 /* <String>['Abia', 'Adamawa', 'Bauchi', 'Benue', 'Bornu', 'Cross River', 'Delta', 'Edo', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi']
           .map<DropdownMenuItem<String>>((String value) {
-
  */

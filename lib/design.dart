@@ -161,8 +161,8 @@ class _EnergizeAppState extends State<EnergizeApp> {
                                       ),
                                       subtitle: Text(
                                         "- Design a Solar System that works "
-                                            "seamlessly with the grid, and other"
-                                            "source",
+                                            "seamlessly with the grid, and other "
+                                            "sources",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 16),
                                       ),
