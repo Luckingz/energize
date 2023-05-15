@@ -233,10 +233,20 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
             ),
             Text("Recommened Panel Type = $selectedPanel"),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => EnergyDemand()));
-                },
-                child: Text("Continue"),
+              onPressed: () {
+                if (pHSvalue != null) {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => EnergyDemand()));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Select a Location'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+              },
+              child: Text("Continue"),
             )
           ],
         ),
@@ -244,3 +254,6 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
     );
   }
 }
+
+
+
