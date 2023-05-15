@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'energy-demand.dart';
 
 class LocationRoute extends StatelessWidget {
   const LocationRoute({Key? key}) : super(key: key);
@@ -232,7 +233,9 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
             ),
             Text("Recommened Panel Type = $selectedPanel"),
             ElevatedButton(
-                onPressed: null,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => EnergyDemand()));
+                },
                 child: Text("Continue"),
             )
           ],
