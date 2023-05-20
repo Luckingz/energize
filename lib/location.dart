@@ -1,3 +1,4 @@
+import 'package:energize/boxes.dart';
 import 'package:flutter/material.dart';
 import 'energy-demand.dart';
 

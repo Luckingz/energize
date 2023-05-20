@@ -1,6 +1,9 @@
+import 'package:energize/boxes.dart';
+import 'package:energize/entries.dart';
 import 'package:flutter/material.dart';
 
 class EnergyDemand extends StatefulWidget {
+
   const EnergyDemand({Key? key}) : super(key: key);
 
   @override
@@ -25,7 +28,7 @@ class _EnergyDemandState extends State<EnergyDemand> {
 class LoadEntry {
   String loadName;
   double powerNeed;
-  int quantity;
+  double quantity;
   double dailyUsage;
   double totalPower = 0;
   double dailyEnergy = 0;
@@ -50,7 +53,7 @@ class _MyFormState extends State<MyForm> {
   List<LoadEntry> loadEntries = [];
   String currentLoadName = '';
   double currentPowerNeed = 0;
-  int currentQuantity = 0;
+  double currentQuantity = 0;
   double currentDailyUsage = 0;
 
   void addEntry() {
@@ -78,11 +81,50 @@ class _MyFormState extends State<MyForm> {
       currentPowerNeed = 0;
       currentQuantity = 0;
       currentDailyUsage = 0;
+
+      loadNameController.text = ''; // Clear the text field
+      powerNeedController.text = ''; // Clear the text field
+      quantityController.text = ''; // Clear the text field
+      dailyEnergyUsageController.text = ''; // Clear the text field
     });
     print("cleared");
   }
 
   @override
+
+  TextEditingController loadNameController = TextEditingController();
+  TextEditingController powerNeedController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
+  TextEditingController totalEnergyController = TextEditingController();
+  TextEditingController dailyEnergyUsageController = TextEditingController();
+
+  String boxLoadName = '';
+  int boxPowerNeed = 0;
+  int boxQuantity = 0;
+  int boxTotalEnergy = 0;
+  int boxDailyEnergyUsage = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    //boxLoadName = loadNameController.text;
+    //boxPowerNeed = int.parse(powerNeedController.text);
+    //boxQuantity = int.parse(quantityController.text);
+    //boxTotalEnergy = int.parse(totalEnergyController.text);
+    //boxDailyEnergyUsage = int.parse(dailyEnergyUsageController.text);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    loadNameController.dispose();
+    powerNeedController.dispose();
+    quantityController.dispose();
+    totalEnergyController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
@@ -92,6 +134,7 @@ class _MyFormState extends State<MyForm> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                controller: loadNameController,
                 decoration: InputDecoration(labelText: 'Load Name'),
                 onChanged: (value) {
                   setState(() {
@@ -100,6 +143,7 @@ class _MyFormState extends State<MyForm> {
                 },
               ),
               TextFormField(
+                controller: powerNeedController,
                 decoration: InputDecoration(labelText: 'Power Need (Watts)'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
@@ -109,15 +153,17 @@ class _MyFormState extends State<MyForm> {
                 },
               ),
               TextFormField(
+                controller: quantityController,
                 decoration: InputDecoration(labelText: 'Quantity'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   setState(() {
-                    currentQuantity = int.tryParse(value) ?? 0;
+                    currentQuantity = double.tryParse(value) ?? 0;
                   });
                 },
               ),
               TextFormField(
+                controller: dailyEnergyUsageController,
                 decoration: InputDecoration(labelText: 'Daily Usage (Hours)'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
@@ -131,8 +177,25 @@ class _MyFormState extends State<MyForm> {
                 onPressed: () {
                   if (currentDailyUsage != 0) {
                     addEntry();
-                    clearEntry();
                   }
+                  setState(() {
+                    try {
+                      int powerNeed = int.parse(powerNeedController.text);
+                      int quantity = int.parse(quantityController.text);
+                      int totalEnergy = int.parse(totalEnergyController.text);
+
+                      boxEntries.put('key_${loadNameController.text}_${powerNeedController}_${quantityController}_${dailyEnergyUsageController}_${totalEnergyController}', Entries(
+                        loadName: loadNameController.text,
+                        powerNeed: powerNeed,
+                        quantity: quantity,
+                        totalEnergy: totalEnergy,
+                      ));
+                    } catch (e) {
+                      print('Invalid number format: $e');
+                      // Handle the parsing error, e.g., show an error message to the user
+                    }
+                  });
+                  clearEntry();
                 },
                 child: Text('Add Entry'),
               ),
