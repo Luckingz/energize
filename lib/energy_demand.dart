@@ -1,17 +1,24 @@
+import 'package:energize/battery_bank_sizing.dart';
 import 'package:energize/boxes.dart';
 import 'package:energize/entries.dart';
 import 'package:flutter/material.dart';
+
+double totalEnergyConsumed = 0;
+
 
 class EnergyDemand extends StatefulWidget {
 
   const EnergyDemand({Key? key}) : super(key: key);
 
   @override
+
   State<EnergyDemand> createState() => _EnergyDemandState();
 }
 
 class _EnergyDemandState extends State<EnergyDemand> {
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -238,14 +245,23 @@ class _MyFormState extends State<MyForm> {
                           );
                         },
                       ),
-                      SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Calculate total energy consumed
-                          double totalEnergyConsumed = loadEntries.fold(0, (sum, entry) => sum + entry.dailyEnergy);
-                          print('Total Energy Consumed: $totalEnergyConsumed');
-                        },
-                        child: Text('Continue'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                // Calculate total energy consumed
+                                totalEnergyConsumed = loadEntries.fold(0, (sum, entry) => sum + entry.dailyEnergy);
+                                print('Total Energy Consumed: $totalEnergyConsumed');
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => BatterySize()));
+                              },
+                              child: Text('Continue'),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -257,3 +273,4 @@ class _MyFormState extends State<MyForm> {
     );
   }
 }
+

@@ -1,6 +1,6 @@
 import 'package:energize/boxes.dart';
 import 'package:flutter/material.dart';
-import 'energy-demand.dart';
+import 'energy_demand.dart';
 
 class LocationRoute extends StatelessWidget {
   const LocationRoute({Key? key}) : super(key: key);
