@@ -2,6 +2,8 @@ import 'package:energize/boxes.dart';
 import 'package:flutter/material.dart';
 import 'energy_demand.dart';
 
+double pHSvalue = 0;
+
 class LocationRoute extends StatelessWidget {
   const LocationRoute({Key? key}) : super(key: key);
 
@@ -203,7 +205,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
                   child: Text('Rivers'),
                 ),
                 DropdownMenuItem(
-                  value: Location(name: 'Sokoto', number: 5.5),
+                  value: Location(name: 'Sokoto', number: 6),
                   child: Text('Sokoto'),
                 ),
                 DropdownMenuItem(
